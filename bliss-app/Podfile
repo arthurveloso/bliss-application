@@ -7,5 +7,6 @@ target 'bliss-app' do
 
   # Pods for bliss-app
   pod 'SnapKit'
+  pod 'Moya'
 
 end
