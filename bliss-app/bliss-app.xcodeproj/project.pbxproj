@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,8 @@
 		76832C632593F11000D9B5D0 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76832C622593F11000D9B5D0 /* HomeCoordinator.swift */; };
 		76832C662593F26400D9B5D0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76832C652593F26400D9B5D0 /* HomeViewController.swift */; };
 		76832C6A2593F75C00D9B5D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76832C692593F75C00D9B5D0 /* LaunchScreen.storyboard */; };
+		7697EB452595140700C45945 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7697EB442595140700C45945 /* HomeViewModel.swift */; };
+		7697EB482595147900C45945 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7697EB472595147900C45945 /* HomeView.swift */; };
 		7AC838B70EAA53A0766AEEE3 /* Pods_bliss_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DE0E3548EB049D679E9AC89 /* Pods_bliss_app.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +31,8 @@
 		76832C622593F11000D9B5D0 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		76832C652593F26400D9B5D0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		76832C692593F75C00D9B5D0 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7697EB442595140700C45945 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		7697EB472595147900C45945 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		9DE0E3548EB049D679E9AC89 /* Pods_bliss_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bliss_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -50,7 +54,6 @@
 				2BFFAEA9DE938C47D32B408F /* Pods-bliss-app.debug.xcconfig */,
 				5D54B16F393E94889BDD340A /* Pods-bliss-app.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -83,6 +86,8 @@
 		76832C472593EDE700D9B5D0 /* bliss-app */ = {
 			isa = PBXGroup;
 			children = (
+				7697EB462595146D00C45945 /* View */,
+				7697EB43259513F200C45945 /* ViewModel */,
 				76832C642593F25800D9B5D0 /* Controllers */,
 				76832C5C2593EF9C00D9B5D0 /* Coordinator */,
 				76832C482593EDE700D9B5D0 /* AppDelegate.swift */,
@@ -109,6 +114,22 @@
 				76832C652593F26400D9B5D0 /* HomeViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		7697EB43259513F200C45945 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7697EB442595140700C45945 /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7697EB462595146D00C45945 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7697EB472595147900C45945 /* HomeView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,6 +247,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				76832C602593EFE200D9B5D0 /* MainCoordinator.swift in Sources */,
+				7697EB482595147900C45945 /* HomeView.swift in Sources */,
+				7697EB452595140700C45945 /* HomeViewModel.swift in Sources */,
 				76832C632593F11000D9B5D0 /* HomeCoordinator.swift in Sources */,
 				76832C492593EDE700D9B5D0 /* AppDelegate.swift in Sources */,
 				76832C5E2593EFB100D9B5D0 /* Coordinator.swift in Sources */,
