@@ -16,6 +16,7 @@
 		76832C6A2593F75C00D9B5D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76832C692593F75C00D9B5D0 /* LaunchScreen.storyboard */; };
 		7697EB452595140700C45945 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7697EB442595140700C45945 /* HomeViewModel.swift */; };
 		7697EB482595147900C45945 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7697EB472595147900C45945 /* HomeView.swift */; };
+		7697EB4A2595184400C45945 /* BlissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7697EB492595184400C45945 /* BlissButton.swift */; };
 		7AC838B70EAA53A0766AEEE3 /* Pods_bliss_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DE0E3548EB049D679E9AC89 /* Pods_bliss_app.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		76832C692593F75C00D9B5D0 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7697EB442595140700C45945 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		7697EB472595147900C45945 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		7697EB492595184400C45945 /* BlissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlissButton.swift; sourceTree = "<group>"; };
 		9DE0E3548EB049D679E9AC89 /* Pods_bliss_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bliss_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				7697EB472595147900C45945 /* HomeView.swift */,
+				7697EB492595184400C45945 /* BlissButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				7697EB452595140700C45945 /* HomeViewModel.swift in Sources */,
 				76832C632593F11000D9B5D0 /* HomeCoordinator.swift in Sources */,
 				76832C492593EDE700D9B5D0 /* AppDelegate.swift in Sources */,
+				7697EB4A2595184400C45945 /* BlissButton.swift in Sources */,
 				76832C5E2593EFB100D9B5D0 /* Coordinator.swift in Sources */,
 				76832C662593F26400D9B5D0 /* HomeViewController.swift in Sources */,
 			);
