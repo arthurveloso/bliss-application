@@ -31,5 +31,23 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: HomeViewDelegate {
+    func randomEmojiPressed() {
+        viewModel?.getRandomEmoji()
+    }
     
+    func emojisListPressed() {
+        
+    }
+    
+    func searchPressed() {
+        
+    }
+    
+    func avatarsListPressed() {
+        
+    }
+    
+    func appleReposPressed() {
+        
+    }
 }

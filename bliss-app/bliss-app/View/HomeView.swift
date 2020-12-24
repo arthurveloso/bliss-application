@@ -10,6 +10,11 @@ import UIKit
 import SnapKit
 
 protocol HomeViewDelegate: class {
+    func randomEmojiPressed()
+    func emojisListPressed()
+    func searchPressed()
+    func avatarsListPressed()
+    func appleReposPressed()
 }
 
 class HomeView: UIView {
@@ -29,11 +34,15 @@ class HomeView: UIView {
     
     lazy var randomEmojiButton: BlissButton = {
         let button = BlissButton(title: "Random Emoji")
+        button.tag = 0
+        button.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
         return button
     }()
     
     lazy var emojisListButton: BlissButton = {
         let button = BlissButton(title: "Emojis List")
+        button.tag = 1
+        button.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
         return button
     }()
     
@@ -52,16 +61,22 @@ class HomeView: UIView {
     
     lazy var searchButton: BlissButton = {
         let button = BlissButton(title: "Search")
+        button.tag = 2
+        button.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
         return button
     }()
     
     lazy var avatarsListButton: BlissButton = {
         let button = BlissButton(title: "Avatars List")
+        button.tag = 3
+        button.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
         return button
     }()
     
     lazy var appleReposButton: BlissButton = {
         let button = BlissButton(title: "Apple Repos")
+        button.tag = 4
+        button.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
         return button
     }()
     
@@ -99,6 +114,24 @@ class HomeView: UIView {
         
         searchButton.snp.makeConstraints { (make) in
             make.width.equalTo(buttonsStack.snp.width).multipliedBy(0.3)
+        }
+    }
+    
+    @objc
+    func buttonPressed(sender: UIButton) {
+        switch sender.tag {
+        case 0:
+            delegate?.randomEmojiPressed()
+        case 1:
+            delegate?.emojisListPressed()
+        case 2:
+            delegate?.searchPressed()
+        case 3:
+            delegate?.avatarsListPressed()
+        case 4:
+            delegate?.appleReposPressed()
+        default:
+            break
         }
     }
 }
