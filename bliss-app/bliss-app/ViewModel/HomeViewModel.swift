@@ -9,13 +9,15 @@
 import Foundation
 import Moya
 
+typealias Emojis = [String: String]
+
 class HomeViewModel {
-    
-    typealias Emoji = [String: String]
-    
+
     let randomEmoji = Bindable<String?>(nil)
     
     let coordinator: HomeCoordinator
+    
+    private var emojisList = [String]()
     
     init(coordinator: HomeCoordinator) {
         self.coordinator = coordinator
@@ -29,10 +31,11 @@ class HomeViewModel {
             case let .success(response):
                 do {
                     // Parsing the dictionary of emojis
-                    let obj = try response.map(Emoji.self)
+                    let obj = try response.map(Emojis.self)
                     
                     // TODO: Save it to Core Data
                     let randomEmoji = obj.randomElement()
+                    self.emojisList = Array(obj.values.map{ $0 })
                     self.randomEmoji.value = randomEmoji?.value
                 } catch {
                     print("decoding error")
@@ -44,7 +47,7 @@ class HomeViewModel {
     }
     
     func goToEmojisList() {
-        coordinator.accept(step: .goToEmojisList)
+        coordinator.accept(step: .goToEmojisList(emojis: emojisList))
     }
     
     func goToAvatarsList() {

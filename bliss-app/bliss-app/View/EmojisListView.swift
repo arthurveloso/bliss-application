@@ -10,6 +10,13 @@ import UIKit
 
 class EmojisListView: UIView {
     
+    lazy var emojisCollection: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collection.backgroundColor = .clear
+        return collection
+    }()
+    
     init() {
         super.init(frame: .zero)
         backgroundColor = .white
@@ -21,6 +28,11 @@ class EmojisListView: UIView {
     }
 
     func setupSubviews() {
-        
+        addSubview(emojisCollection)
+        emojisCollection.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().inset(100)
+            make.leading.trailing.equalToSuperview().inset(10)
+            make.bottom.equalToSuperview()
+        }
     }
 }

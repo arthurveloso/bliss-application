@@ -11,11 +11,12 @@ import Moya
 
 class EmojisListViewModel {
     
-    typealias Emoji = [String: String]
-    
     let coordinator: HomeCoordinator
     
-    init(coordinator: HomeCoordinator) {
+    var emojis = [String]()
+    
+    init(coordinator: HomeCoordinator, emojis: [String]) {
         self.coordinator = coordinator
+        self.emojis = emojis
     }
 }

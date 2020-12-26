@@ -31,6 +31,33 @@ class EmojisListViewController: UIViewController {
     }
     
     private func bindElements() {
+        emojisView?.emojisCollection.register(EmojisCell.self, forCellWithReuseIdentifier: EmojisCell.reuseId)
+        emojisView?.emojisCollection.delegate = self
+        emojisView?.emojisCollection.dataSource = self
+    }
+}
 
+extension EmojisListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel?.emojis.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmojisCell.reuseId, for: indexPath) as? EmojisCell ?? EmojisCell()
+        cell.emojiImage.downloaded(from: viewModel?.emojis[indexPath.item] ?? "")
+        cell.backgroundColor = .red
+        return cell
+    }
+}
+
+extension EmojisListViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size = (self.emojisView?.frame.width ?? 0.0) / 3.5
+        return CGSize(width: size, height: size)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
     }
 }
