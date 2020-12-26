@@ -13,15 +13,27 @@ class HomeViewModel {
     
     typealias Emoji = [String: String]
     
+    let randomEmoji = Bindable<String?>(nil)
+    
+    let coordinator: HomeCoordinator
+    
+    init(coordinator: HomeCoordinator) {
+        self.coordinator = coordinator
+    }
+    
     func getRandomEmoji() {
         let provider = MoyaProvider<GitHubService>()
-        provider.request(.getEmojis) { result in
+        provider.request(.getEmojis) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case let .success(response):
                 do {
+                    // Parsing the dictionary of emojis
                     let obj = try response.map(Emoji.self)
-                    print(obj)
                     
+                    // TODO: Save it to Core Data
+                    let randomEmoji = obj.randomElement()
+                    self.randomEmoji.value = randomEmoji?.value
                 } catch {
                     print("decoding error")
                 }
@@ -29,5 +41,17 @@ class HomeViewModel {
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    func goToEmojisList() {
+        coordinator.accept(step: .goToEmojisList)
+    }
+    
+    func goToAvatarsList() {
+        coordinator.accept(step: .goToAvatarsList)
+    }
+    
+    func goToAppleRepos() {
+        coordinator.accept(step: .goToAppleRepos)
     }
 }

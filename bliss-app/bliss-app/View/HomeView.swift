@@ -21,7 +21,6 @@ class HomeView: UIView {
     
     lazy var emojiImage: UIImageView = {
         let emoji = UIImageView()
-        emoji.backgroundColor = .black
         return emoji
     }()
     

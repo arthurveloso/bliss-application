@@ -10,7 +10,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    private var homeView: UIView?
+    private var homeView: HomeView?
     
     private let viewModel: HomeViewModel?
     
@@ -27,6 +27,14 @@ class HomeViewController: UIViewController {
     override func loadView() {
         homeView = HomeView(delegate: self)
         self.view = homeView
+        bindElements()
+    }
+    
+    private func bindElements() {
+        viewModel?.randomEmoji.bind(skip: true, { [weak self] link in
+            guard let self = self, let link = link else { return }
+            self.homeView?.emojiImage.downloaded(from: link)
+        })
     }
 }
 
@@ -36,7 +44,7 @@ extension HomeViewController: HomeViewDelegate {
     }
     
     func emojisListPressed() {
-        
+        viewModel?.goToEmojisList()
     }
     
     func searchPressed() {
