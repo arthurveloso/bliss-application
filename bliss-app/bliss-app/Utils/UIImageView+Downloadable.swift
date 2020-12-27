@@ -9,22 +9,26 @@
 import UIKit
 
 extension UIImageView {
-    func downloaded(from url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit) {
-        contentMode = mode
+    func downloaded(from url: URL, completion: @escaping (Data) -> Void) {
+        contentMode = .scaleAspectFit
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard
                 let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
                 let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
                 let data = data, error == nil,
-                let image = UIImage(data: data)
+                let image = UIImage(data: data),
+                let pngData = image.pngData()
                 else { return }
+            completion(pngData)
             DispatchQueue.main.async() { [weak self] in
                 self?.image = image
             }
         }.resume()
     }
-    func downloaded(from link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit) {
+    func downloaded(from link: String, completion: @escaping (Data) -> Void) {
         guard let url = URL(string: link) else { return }
-        downloaded(from: url, contentMode: mode)
+        downloaded(from: url) { data in
+            completion(data)
+        }
     }
 }

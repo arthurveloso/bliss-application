@@ -14,40 +14,48 @@ typealias Emojis = [String: String]
 class HomeViewModel {
 
     let randomEmoji = Bindable<String?>(nil)
+    let randomCachedEmoji = Bindable<Data?>(nil)
     
     let coordinator: HomeCoordinator
+    let provider = MoyaProvider<GitHubService>()
     
     private var emojisList = [String]()
+    private var cachedEmojis = [Emoji]()
     
     init(coordinator: HomeCoordinator) {
         self.coordinator = coordinator
     }
     
     func getRandomEmoji() {
-        let provider = MoyaProvider<GitHubService>()
-        provider.request(.getEmojis) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case let .success(response):
-                do {
-                    // Parsing the dictionary of emojis
-                    let obj = try response.map(Emojis.self)
-                    
-                    // TODO: Save it to Core Data
-                    let randomEmoji = obj.randomElement()
-                    self.emojisList = Array(obj.values.map{ $0 })
-                    self.randomEmoji.value = randomEmoji?.value
-                } catch {
-                    print("decoding error")
+        cachedEmojis = CoreDataManager.shared.fetchImage()
+        if cachedEmojis.isEmpty {
+            provider.request(.getEmojis) { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case let .success(response):
+                    do {
+                        // Parsing the dictionary of emojis
+                        let obj = try response.map(Emojis.self)
+                        
+                        // TODO: Save it to Core Data
+                        let randomEmoji = obj.randomElement()
+                        self.emojisList = Array(obj.values.map{ $0 })
+                        self.randomEmoji.value = randomEmoji?.value
+                    } catch {
+                        print("decoding error")
+                    }
+                case let .failure(error):
+                    print(error.localizedDescription)
                 }
-            case let .failure(error):
-                print(error.localizedDescription)
             }
+        } else {
+            self.randomCachedEmoji.value = cachedEmojis.randomElement()?.image
         }
     }
-    
+
     func goToEmojisList() {
-        coordinator.accept(step: .goToEmojisList(emojis: emojisList))
+        cachedEmojis = CoreDataManager.shared.fetchImage()
+        coordinator.accept(step: .goToEmojisList(emojis: emojisList, emojisImage: cachedEmojis))
     }
     
     func goToAvatarsList() {
@@ -56,5 +64,18 @@ class HomeViewModel {
     
     func goToAppleRepos() {
         coordinator.accept(step: .goToAppleRepos)
+    }
+    
+    func searchUserAvatar(name: String) {
+        provider.request(.getUser(name: name)) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case let .success(response):
+                
+                break
+            case let .failure(error):
+                print(error.localizedDescription)
+            }
+        }
     }
 }

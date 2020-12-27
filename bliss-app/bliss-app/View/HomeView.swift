@@ -54,6 +54,8 @@ class HomeView: UIView {
     
     lazy var searchBar: UISearchBar = {
         let bar = UISearchBar()
+        bar.textContentType = .username
+        bar.autocapitalizationType = .none
         bar.barTintColor = .purple
         return bar
     }()

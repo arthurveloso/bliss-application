@@ -9,7 +9,7 @@
 import UIKit
 
 enum HomeSteps {
-    case goToEmojisList(emojis: [String])
+    case goToEmojisList(emojis: [String], emojisImage: [Emoji])
     case goToAvatarsList
     case goToAppleRepos
     case dismiss
@@ -27,8 +27,8 @@ class HomeCoordinator: Coordinator {
         steps.bind(skip: true) { [weak self] step in
             guard let self = self, let step = step else { return }
             switch step {
-            case .goToEmojisList(let emojis):
-                self.goToEmojisList(emojis: emojis)
+            case .goToEmojisList(let emojis, let emojisImage):
+                self.goToEmojisList(emojis: emojis, emojisImage: emojisImage)
             case .goToAvatarsList:
                 self.goToAvatarsList()
             case .goToAppleRepos:
@@ -49,8 +49,8 @@ class HomeCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: true)
     }
     
-    func goToEmojisList(emojis: [String]) {
-        let vm = EmojisListViewModel(coordinator: self, emojis: emojis)
+    func goToEmojisList(emojis: [String], emojisImage: [Emoji]) {
+        let vm = EmojisListViewModel(coordinator: self, emojis: emojis, emojisImage: emojisImage)
         let vc = EmojisListViewController(title: "Emojis", viewModel: vm)
         navigationController.pushViewController(vc, animated: true)
     }

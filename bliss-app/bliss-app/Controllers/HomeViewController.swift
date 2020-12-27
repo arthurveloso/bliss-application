@@ -33,7 +33,12 @@ class HomeViewController: UIViewController {
     private func bindElements() {
         viewModel?.randomEmoji.bind(skip: true, { [weak self] link in
             guard let self = self, let link = link else { return }
-            self.homeView?.emojiImage.downloaded(from: link)
+            self.homeView?.emojiImage.downloaded(from: link, completion: { _ in })
+        })
+        
+        viewModel?.randomCachedEmoji.bind(skip: true, { [weak self] data in
+            guard let self = self, let data = data else { return }
+            self.homeView?.emojiImage.image = UIImage(data: data)
         })
     }
 }
@@ -48,7 +53,8 @@ extension HomeViewController: HomeViewDelegate {
     }
     
     func searchPressed() {
-        
+        guard let text = homeView?.searchBar.text, !text.isEmpty else { return }
+        viewModel?.searchUserAvatar(name: text)
     }
     
     func avatarsListPressed() {

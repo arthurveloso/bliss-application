@@ -14,9 +14,46 @@ class EmojisListViewModel {
     let coordinator: HomeCoordinator
     
     var emojis = [String]()
+    var emojisImage = [Emoji]()
     
-    init(coordinator: HomeCoordinator, emojis: [String]) {
+    var shouldFetchEmojis: Bool {
+        emojisImage.isEmpty
+    }
+    
+    let fetchedResult = Bindable<Bool>(false)
+    
+    init(coordinator: HomeCoordinator, emojis: [String], emojisImage: [Emoji]) {
         self.coordinator = coordinator
         self.emojis = emojis
+        self.emojisImage = emojisImage
+    }
+    
+    func fetchEmojis() {
+        let provider = MoyaProvider<GitHubService>()
+        provider.request(.getEmojis) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case let .success(response):
+                do {
+                    // Parsing the dictionary of emojis
+                    let obj = try response.map(Emojis.self)
+                    self.emojis = Array(obj.values.map{ $0 })
+                    self.fetchedResult.value = true
+                } catch {
+                    print("decoding error")
+                }
+            case let .failure(error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func refreshData() {
+        emojisImage = CoreDataManager.shared.fetchImage()
+    }
+
+    func saveImage(imageData: Data?) {
+        guard let data = imageData else { return }
+        CoreDataManager.shared.saveImage(data: data)
     }
 }
