@@ -62,7 +62,9 @@ class HomeCoordinator: Coordinator {
     }
     
     func goToAppleReposList() {
-        
+        let vm = AppleReposViewModel()
+        let vc = AppleReposViewController(title: "Apple Repos", viewModel: vm)
+        navigationController.pushViewController(vc, animated: true)
     }
     
     func dismiss() {

@@ -62,6 +62,6 @@ extension HomeViewController: HomeViewDelegate {
     }
     
     func appleReposPressed() {
-        
+        viewModel?.goToAppleRepos()
     }
 }

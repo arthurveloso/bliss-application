@@ -38,11 +38,11 @@ extension GitHubService: TargetType {
     var sampleData: Data {
         switch self {
         case .getEmojis:
-            return "{\"id\": \"123\", \"first_name\": \"Harry\", \"last_name\": \"Potter\"}".utf8Encoded
+            return "{}".utf8Encoded
         case .getUser(_):
-            return "{\"id\": \"123\", \"first_name\": \"Harry\", \"last_name\": \"Potter\"}".utf8Encoded
+            return "{}".utf8Encoded
         case .getUserRepos(_, _, _):
-            return "{\"id\": \"123\", \"first_name\": \"Harry\", \"last_name\": \"Potter\"}".utf8Encoded
+            return "{}".utf8Encoded
         }
     }
     
@@ -52,8 +52,8 @@ extension GitHubService: TargetType {
             return .requestPlain
         case .getUserRepos(_, let page, let size):
             return .requestParameters(parameters: ["page": page,
-                                                   "size": size],
-                                      encoding: JSONEncoding.default)
+                                                   "per_page": size],
+                                      encoding: URLEncoding.queryString)
         }
     }
 
