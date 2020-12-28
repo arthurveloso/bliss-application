@@ -27,7 +27,7 @@ class HomeViewModel {
     }
     
     func getRandomEmoji() {
-        cachedEmojis = CoreDataManager.shared.fetchImage()
+        cachedEmojis = CoreDataManager.shared.fetchEmoji()
         if cachedEmojis.isEmpty {
             provider.request(.getEmojis) { [weak self] result in
                 guard let self = self else { return }
@@ -37,15 +37,17 @@ class HomeViewModel {
                         // Parsing the dictionary of emojis
                         let obj = try response.map(Emojis.self)
                         
-                        // TODO: Save it to Core Data
+                        // Getting random emoji
                         let randomEmoji = obj.randomElement()
-                        self.emojisList = Array(obj.values.map{ $0 })
                         self.randomEmoji.value = randomEmoji?.value
+                        
+                        // Saving all emojis to an in memory array
+                        self.emojisList = Array(obj.values.map{ $0 })
                     } catch {
-                        print("decoding error")
+                        debugPrint(error.localizedDescription)
                     }
                 case let .failure(error):
-                    print(error.localizedDescription)
+                    debugPrint(error.localizedDescription)
                 }
             }
         } else {
@@ -53,8 +55,29 @@ class HomeViewModel {
         }
     }
 
+    func searchUserAvatar(name: String) {
+        provider.request(.getUser(name: name)) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case let .success(response):
+                do {
+                    let obj = try response.map(User.self)
+                    self.saveUser(user: obj)
+                } catch {
+                    debugPrint(error.localizedDescription)
+                }
+            case let .failure(error):
+                debugPrint(error.localizedDescription)
+            }
+        }
+    }
+    
+    func saveUser(user: User) {
+        CoreDataManager.shared.saveAvatar(user: user)
+    }
+
     func goToEmojisList() {
-        cachedEmojis = CoreDataManager.shared.fetchImage()
+        cachedEmojis = CoreDataManager.shared.fetchEmoji()
         coordinator.accept(step: .goToEmojisList(emojis: emojisList, emojisImage: cachedEmojis))
     }
     
@@ -64,18 +87,5 @@ class HomeViewModel {
     
     func goToAppleRepos() {
         coordinator.accept(step: .goToAppleRepos)
-    }
-    
-    func searchUserAvatar(name: String) {
-        provider.request(.getUser(name: name)) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case let .success(response):
-                
-                break
-            case let .failure(error):
-                print(error.localizedDescription)
-            }
-        }
     }
 }

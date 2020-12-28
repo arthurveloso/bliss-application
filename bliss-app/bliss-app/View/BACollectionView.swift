@@ -1,5 +1,5 @@
 //
-//  EmojisListView.swift
+//  BACollectionView.swift
 //  bliss-app
 //
 //  Created by Arthur Veloso Gouveia Melo on 26/12/20.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class EmojisListView: UIView {
+class BACollectionView: UIView {
     
-    lazy var emojisCollection: UICollectionView = {
+    lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.backgroundColor = .clear
@@ -28,8 +28,8 @@ class EmojisListView: UIView {
     }
 
     func setupSubviews() {
-        addSubview(emojisCollection)
-        emojisCollection.snp.makeConstraints { (make) in
+        addSubview(collectionView)
+        collectionView.snp.makeConstraints { (make) in
             make.top.equalToSuperview().inset(100)
             make.leading.trailing.equalToSuperview().inset(10)
             make.bottom.equalToSuperview()

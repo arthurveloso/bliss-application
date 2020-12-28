@@ -1,5 +1,5 @@
 //
-//  EmojisListViewController.swift
+//  BAListViewController.swift
 //  bliss-app
 //
 //  Created by Arthur Veloso Gouveia Melo on 26/12/20.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class EmojisListViewController: UIViewController {
+class BAListViewController: UIViewController {
     
-    private var emojisView: EmojisListView?
+    private var baCollectionView: BACollectionView?
     
     private let viewModel: EmojisListViewModel?
     
@@ -27,16 +27,16 @@ class EmojisListViewController: UIViewController {
     }
     
     override func loadView() {
-        emojisView = EmojisListView()
-        self.view = emojisView
+        baCollectionView = BACollectionView()
+        self.view = baCollectionView
         bindElements()
     }
     
     private func bindElements() {
         guard let viewModel = viewModel else { return }
-        emojisView?.emojisCollection.register(EmojisCell.self, forCellWithReuseIdentifier: EmojisCell.reuseId)
-        emojisView?.emojisCollection.delegate = self
-        emojisView?.emojisCollection.dataSource = self
+        baCollectionView?.collectionView.register(EmojisCell.self, forCellWithReuseIdentifier: EmojisCell.reuseId)
+        baCollectionView?.collectionView.delegate = self
+        baCollectionView?.collectionView.dataSource = self
         
         addRefresher()
         
@@ -44,30 +44,30 @@ class EmojisListViewController: UIViewController {
             viewModel.fetchEmojis()
             viewModel.fetchedResult.bind(skip: true, { [weak self] isFetched in
                 guard let self = self, isFetched == true else { return }
-                self.emojisView?.emojisCollection.reloadData()
+                self.baCollectionView?.collectionView.reloadData()
             })
         }
     }
     
     private func addRefresher() {
-        emojisView?.emojisCollection.refreshControl = refresher
-        emojisView?.emojisCollection.alwaysBounceVertical = true
+        baCollectionView?.collectionView.refreshControl = refresher
+        baCollectionView?.collectionView.alwaysBounceVertical = true
         refresher.tintColor = .red
         refresher.addTarget(self, action: #selector(refreshData), for: .valueChanged)
     }
     
     @objc
     private func refreshData() {
-        emojisView?.emojisCollection.refreshControl?.beginRefreshing()
+        baCollectionView?.collectionView.refreshControl?.beginRefreshing()
         viewModel?.refreshData()
         DispatchQueue.main.async { [weak self] in
-            self?.emojisView?.emojisCollection.refreshControl?.endRefreshing()
-            self?.emojisView?.emojisCollection.reloadData()
+            self?.baCollectionView?.collectionView.refreshControl?.endRefreshing()
+            self?.baCollectionView?.collectionView.reloadData()
         }
     }
 }
 
-extension EmojisListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension BAListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let viewModel = viewModel else { return 0 }
         return viewModel.shouldFetchEmojis ? viewModel.emojis.count : viewModel.emojisImage.count
@@ -107,10 +107,10 @@ extension EmojisListViewController: UICollectionViewDelegate, UICollectionViewDa
     }
 }
 
-extension EmojisListViewController: UICollectionViewDelegateFlowLayout {
+extension BAListViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = (self.emojisView?.frame.width ?? 0.0) / 3.5
+        let size = (self.baCollectionView?.frame.width ?? 0.0) / 3.5
         return CGSize(width: size, height: size)
     }
     

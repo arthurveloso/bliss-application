@@ -51,12 +51,14 @@ class HomeCoordinator: Coordinator {
     
     func goToEmojisList(emojis: [String], emojisImage: [Emoji]) {
         let vm = EmojisListViewModel(coordinator: self, emojis: emojis, emojisImage: emojisImage)
-        let vc = EmojisListViewController(title: "Emojis", viewModel: vm)
+        let vc = BAListViewController(title: "Emojis", viewModel: vm)
         navigationController.pushViewController(vc, animated: true)
     }
     
     func goToAvatarsList() {
-        
+        let vm = AvatarListViewModel()
+        let vc = AvatarListViewController(title: "Avatars", viewModel: vm)
+        navigationController.pushViewController(vc, animated: true)
     }
     
     func goToAppleReposList() {

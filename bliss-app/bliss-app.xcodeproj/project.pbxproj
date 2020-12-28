@@ -21,10 +21,13 @@
 		7697EB5025953EAE00C45945 /* UIImageView+Downloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7697EB4F25953EAE00C45945 /* UIImageView+Downloadable.swift */; };
 		76CEE04325980C4F00D60A06 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CEE04225980C4F00D60A06 /* CoreDataManager.swift */; };
 		76CEE06E259823A900D60A06 /* bliss-app.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 76CEE03F2598063C00D60A06 /* bliss-app.xcdatamodeld */; };
+		76CEE071259939BF00D60A06 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CEE070259939BF00D60A06 /* User.swift */; };
+		76CEE07525996FA300D60A06 /* BACollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CEE07425996FA300D60A06 /* BACollectionView.swift */; };
+		76CEE077259970AA00D60A06 /* AvatarListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CEE076259970AA00D60A06 /* AvatarListViewController.swift */; };
+		76CEE0792599715400D60A06 /* AvatarListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CEE0782599715400D60A06 /* AvatarListViewModel.swift */; };
 		76EDEAB42597C64400A3799F /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EDEAB32597C64400A3799F /* Bindable.swift */; };
 		76EDEAB62597F47F00A3799F /* EmojisListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EDEAB52597F47F00A3799F /* EmojisListViewModel.swift */; };
-		76EDEAB82597F4AD00A3799F /* EmojisListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EDEAB72597F4AD00A3799F /* EmojisListViewController.swift */; };
-		76EDEABA2597F4F200A3799F /* EmojisListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EDEAB92597F4F200A3799F /* EmojisListView.swift */; };
+		76EDEAB82597F4AD00A3799F /* BAListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EDEAB72597F4AD00A3799F /* BAListViewController.swift */; };
 		76EDEABC2597F81400A3799F /* EmojisCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EDEABB2597F81400A3799F /* EmojisCell.swift */; };
 		7AC838B70EAA53A0766AEEE3 /* Pods_bliss_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DE0E3548EB049D679E9AC89 /* Pods_bliss_app.framework */; };
 /* End PBXBuildFile section */
@@ -48,10 +51,13 @@
 		7697EB4F25953EAE00C45945 /* UIImageView+Downloadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Downloadable.swift"; sourceTree = "<group>"; };
 		76CEE0402598063C00D60A06 /* bliss-app.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "bliss-app.xcdatamodel"; sourceTree = "<group>"; };
 		76CEE04225980C4F00D60A06 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		76CEE070259939BF00D60A06 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		76CEE07425996FA300D60A06 /* BACollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BACollectionView.swift; sourceTree = "<group>"; };
+		76CEE076259970AA00D60A06 /* AvatarListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarListViewController.swift; sourceTree = "<group>"; };
+		76CEE0782599715400D60A06 /* AvatarListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarListViewModel.swift; sourceTree = "<group>"; };
 		76EDEAB32597C64400A3799F /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		76EDEAB52597F47F00A3799F /* EmojisListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojisListViewModel.swift; sourceTree = "<group>"; };
-		76EDEAB72597F4AD00A3799F /* EmojisListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojisListViewController.swift; sourceTree = "<group>"; };
-		76EDEAB92597F4F200A3799F /* EmojisListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojisListView.swift; sourceTree = "<group>"; };
+		76EDEAB72597F4AD00A3799F /* BAListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAListViewController.swift; sourceTree = "<group>"; };
 		76EDEABB2597F81400A3799F /* EmojisCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojisCell.swift; sourceTree = "<group>"; };
 		9DE0E3548EB049D679E9AC89 /* Pods_bliss_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bliss_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -106,6 +112,7 @@
 		76832C472593EDE700D9B5D0 /* bliss-app */ = {
 			isa = PBXGroup;
 			children = (
+				76CEE06F259939AB00D60A06 /* Model */,
 				76CEE03E2598062500D60A06 /* CoreData */,
 				7697EB4E25953EA300C45945 /* Utils */,
 				7697EB4B259533A800C45945 /* Service */,
@@ -135,7 +142,8 @@
 			isa = PBXGroup;
 			children = (
 				76832C652593F26400D9B5D0 /* HomeViewController.swift */,
-				76EDEAB72597F4AD00A3799F /* EmojisListViewController.swift */,
+				76EDEAB72597F4AD00A3799F /* BAListViewController.swift */,
+				76CEE076259970AA00D60A06 /* AvatarListViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -145,6 +153,7 @@
 			children = (
 				7697EB442595140700C45945 /* HomeViewModel.swift */,
 				76EDEAB52597F47F00A3799F /* EmojisListViewModel.swift */,
+				76CEE0782599715400D60A06 /* AvatarListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -154,8 +163,8 @@
 			children = (
 				76EDEABE2597F82000A3799F /* Components */,
 				76EDEABD2597F81800A3799F /* Cells */,
+				76CEE07425996FA300D60A06 /* BACollectionView.swift */,
 				7697EB472595147900C45945 /* HomeView.swift */,
-				76EDEAB92597F4F200A3799F /* EmojisListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -180,18 +189,18 @@
 		76CEE03E2598062500D60A06 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				76CEE04825980FE500D60A06 /* Data */,
 				76CEE03F2598063C00D60A06 /* bliss-app.xcdatamodeld */,
 				76CEE04225980C4F00D60A06 /* CoreDataManager.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
 		};
-		76CEE04825980FE500D60A06 /* Data */ = {
+		76CEE06F259939AB00D60A06 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				76CEE070259939BF00D60A06 /* User.swift */,
 			);
-			path = Data;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		76EDEABD2597F81800A3799F /* Cells */ = {
@@ -325,18 +334,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				76832C602593EFE200D9B5D0 /* MainCoordinator.swift in Sources */,
+				76CEE07525996FA300D60A06 /* BACollectionView.swift in Sources */,
 				7697EB482595147900C45945 /* HomeView.swift in Sources */,
 				7697EB452595140700C45945 /* HomeViewModel.swift in Sources */,
-				76EDEAB82597F4AD00A3799F /* EmojisListViewController.swift in Sources */,
+				76EDEAB82597F4AD00A3799F /* BAListViewController.swift in Sources */,
 				76CEE04325980C4F00D60A06 /* CoreDataManager.swift in Sources */,
 				76832C632593F11000D9B5D0 /* HomeCoordinator.swift in Sources */,
 				76EDEAB42597C64400A3799F /* Bindable.swift in Sources */,
+				76CEE071259939BF00D60A06 /* User.swift in Sources */,
 				76832C492593EDE700D9B5D0 /* AppDelegate.swift in Sources */,
 				76CEE06E259823A900D60A06 /* bliss-app.xcdatamodeld in Sources */,
 				7697EB5025953EAE00C45945 /* UIImageView+Downloadable.swift in Sources */,
 				76EDEAB62597F47F00A3799F /* EmojisListViewModel.swift in Sources */,
-				76EDEABA2597F4F200A3799F /* EmojisListView.swift in Sources */,
 				7697EB4A2595184400C45945 /* BlissButton.swift in Sources */,
+				76CEE077259970AA00D60A06 /* AvatarListViewController.swift in Sources */,
+				76CEE0792599715400D60A06 /* AvatarListViewModel.swift in Sources */,
 				76832C5E2593EFB100D9B5D0 /* Coordinator.swift in Sources */,
 				76EDEABC2597F81400A3799F /* EmojisCell.swift in Sources */,
 				7697EB4D259533BE00C45945 /* GitHubService.swift in Sources */,

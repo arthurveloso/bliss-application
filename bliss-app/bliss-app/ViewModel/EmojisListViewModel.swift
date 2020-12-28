@@ -40,7 +40,7 @@ class EmojisListViewModel {
                     self.emojis = Array(obj.values.map{ $0 })
                     self.fetchedResult.value = true
                 } catch {
-                    print("decoding error")
+                    debugPrint(error.localizedDescription)
                 }
             case let .failure(error):
                 print(error.localizedDescription)
@@ -49,11 +49,11 @@ class EmojisListViewModel {
     }
     
     func refreshData() {
-        emojisImage = CoreDataManager.shared.fetchImage()
+        emojisImage = CoreDataManager.shared.fetchEmoji()
     }
 
     func saveImage(imageData: Data?) {
         guard let data = imageData else { return }
-        CoreDataManager.shared.saveImage(data: data)
+        CoreDataManager.shared.saveEmoji(data: data)
     }
 }

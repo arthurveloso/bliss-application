@@ -13,7 +13,7 @@ class CoreDataManager {
     
     static let shared = CoreDataManager()
     
-    func saveImage(data: Data) {
+    func saveEmoji(data: Data) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -24,13 +24,13 @@ class CoreDataManager {
         
         do {
             try managedContext.save()
-            print("Emoji Image saved")
+            debugPrint("Emoji Image saved")
         } catch {
-            print(error.localizedDescription)
+            debugPrint(error.localizedDescription)
         }
     }
     
-    func fetchImage() -> [Emoji] {
+    func fetchEmoji() -> [Emoji] {
         var emojis = [Emoji]()
 
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return emojis }
@@ -42,21 +42,68 @@ class CoreDataManager {
         do {
             emojis = try (managedContext.fetch(fetchRequest) as? [Emoji] ?? [Emoji()])
         } catch {
-            print("Error while fetching the image")
+            debugPrint("Error while fetching the image")
         }
         return emojis
     }
+    
+    func saveAvatar(user: User) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let userEntity = NSEntityDescription.entity(forEntityName: "Avatar", in: managedContext)!
+        
+        // Validating existence of Avatar on CoreData
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
+        fetchRequest.entity = userEntity
+        fetchRequest.fetchLimit = 1
+        fetchRequest.predicate = NSPredicate(format: "username == %@", user.login ?? "")
+        
+        var count = 0
+        do {
+            count = try managedContext.count(for: fetchRequest)
+            print(count)
+        } catch {
+            debugPrint(error.localizedDescription)
+        }
+        
+        // Breaking save function if value is already on CoreData
+        guard count == 0 else { return }
+        
+        let avatar = Avatar(entity: userEntity, insertInto: managedContext)
+        
+        let url = URL(string: user.avatarURL ?? "")
+        if let data = try? Data(contentsOf: url!)
+        {
+            let pngData: Data = UIImage(data: data)?.pngData() ?? Data()
+            avatar.avatar = pngData
+        }
+        avatar.username = user.login
 
-//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-//
-//    func saveImage(data: Data) {
-//        let imageInstance = Image(context: context)
-//        imageInstance.img = data
-//        do {
-//            try context.save()
-//            print("Image is saved")
-//        } catch {
-//            print(error.localizedDescription)
-//        }
-//    }
+        do {
+            try managedContext.save()
+            debugPrint("Avatar saved")
+        } catch {
+            debugPrint(error.localizedDescription)
+        }
+    }
+    
+    func fetchAvatar() -> [Avatar] {
+        var avatars = [Avatar]()
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return avatars }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Avatar")
+        
+        do {
+            avatars = try (managedContext.fetch(fetchRequest) as? [Avatar] ?? [Avatar()])
+        } catch {
+            debugPrint("Error while fetching the image")
+        }
+        
+        return avatars
+    }
 }

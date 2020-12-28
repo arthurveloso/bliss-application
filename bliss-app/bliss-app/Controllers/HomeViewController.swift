@@ -58,7 +58,7 @@ extension HomeViewController: HomeViewDelegate {
     }
     
     func avatarsListPressed() {
-        
+        viewModel?.goToAvatarsList()
     }
     
     func appleReposPressed() {
