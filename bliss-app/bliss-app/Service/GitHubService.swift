@@ -12,7 +12,7 @@ import Moya
 enum GitHubService {
     case getEmojis
     case getUser(name: String)
-    case getUserRepos(user: String, page: Int, size: Int)
+    case getUserRepos(user: String)
 }
 
 extension GitHubService: TargetType {
@@ -26,7 +26,7 @@ extension GitHubService: TargetType {
             return "/emojis"
         case .getUser(let user):
             return "/users/\(user)"
-        case .getUserRepos(let user, _, _):
+        case .getUserRepos(let user):
             return "/users/\(user)/repos"
         }
     }
@@ -41,19 +41,15 @@ extension GitHubService: TargetType {
             return "{}".utf8Encoded
         case .getUser(_):
             return "{}".utf8Encoded
-        case .getUserRepos(_, _, _):
+        case .getUserRepos(_):
             return "{}".utf8Encoded
         }
     }
     
     var task: Task {
         switch self {
-        case .getEmojis, .getUser(_):
+        case .getEmojis, .getUser(_), .getUserRepos(_):
             return .requestPlain
-        case .getUserRepos(_, let page, let size):
-            return .requestParameters(parameters: ["page": page,
-                                                   "per_page": size],
-                                      encoding: URLEncoding.queryString)
         }
     }
 

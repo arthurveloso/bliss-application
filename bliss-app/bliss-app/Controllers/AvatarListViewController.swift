@@ -57,6 +57,16 @@ extension AvatarListViewController: UICollectionViewDataSource, UICollectionView
         
         return cell
     }
+}
+
+extension AvatarListViewController: UICollectionViewDelegateFlowLayout {
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size = (self.baCollectionView?.frame.width ?? 0.0) / 3.5
+        return CGSize(width: size, height: size)
+    }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
 }

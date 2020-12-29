@@ -46,13 +46,16 @@ class AppleReposViewController: UIViewController {
 
 extension AppleReposViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.repos.value.count ?? 0
+        guard let reposCount = viewModel?.repos.value.count else { return 0 }
+        return reposCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        guard let repos = viewModel?.repos.value else { return cell }
+
+        guard let repos = viewModel?.repos.value, repos.count > 0 else { return cell }
         cell.textLabel?.text = repos[indexPath.row].name ?? ""
+        
         return cell
     }
 }

@@ -30,7 +30,7 @@ class EmojisCell: UICollectionViewCell {
     func setCorners() {
         self.layer.cornerRadius = 10
         self.layer.borderWidth = 2
-        self.layer.borderColor = UIColor.purple.cgColor
+        self.layer.borderColor = UIColor.white.cgColor
         self.backgroundColor = .clear
     }
     
