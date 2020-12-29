@@ -5,6 +5,7 @@ Example iOS app developed for Bliss Applications.
 * Swift 5
 * Xcode 11.3.1
 * macOS Mojave (10.14.6)
+* iPhone X simulator
 
 ### Libraries/abstractions used:
 * SnapKit for view code and auto-layout
