@@ -82,12 +82,12 @@ extension BAListViewController: UICollectionViewDelegate, UICollectionViewDataSo
         if viewModel.shouldFetchEmojis {
             let emoji = viewModel.emojis[indexPath.item]
             
-            cell.emojiImage.downloaded(from: emoji) { [weak self] data in
+            cell.itemImage.downloaded(from: emoji) { [weak self] data in
                 self?.viewModel?.saveImage(imageData: data)
             }
         } else {
             let imgData = viewModel.emojisImage[indexPath.item].image ?? Data()
-            cell.emojiImage.image = UIImage(data: imgData)
+            cell.itemImage.image = UIImage(data: imgData)
         }
         
         cell.backgroundColor = .blissRed

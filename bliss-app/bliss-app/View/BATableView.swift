@@ -12,6 +12,8 @@ class BATableView: UIView {
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()
+        tableView.backgroundColor = .clear
+        tableView.separatorColor = .black
         return tableView
     }()
     
@@ -28,7 +30,7 @@ class BATableView: UIView {
     func setupSubviews() {
         addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().inset(80)
+            make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }

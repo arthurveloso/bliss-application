@@ -56,6 +56,7 @@ class HomeView: UIView {
         let bar = UISearchBar()
         bar.textContentType = .username
         bar.autocapitalizationType = .none
+        bar.placeholder = "GitHub username"
         bar.barTintColor = .blissRed
         return bar
     }()

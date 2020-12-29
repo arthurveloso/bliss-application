@@ -28,6 +28,7 @@ class AppleReposViewController: UIViewController {
         baTableView = BATableView()
         self.view = baTableView
         bindElements()
+        self.view.backgroundColor = .blissDark
     }
 
     private func bindElements() {
@@ -54,7 +55,11 @@ extension AppleReposViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = UITableViewCell()
 
         guard let repos = viewModel?.repos.value, repos.count > 0 else { return cell }
+        cell.backgroundColor = .clear
         cell.textLabel?.text = repos[indexPath.row].name ?? ""
+        cell.textLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+        cell.textLabel?.textColor = .blissRed
+        cell.selectionStyle = .none
         
         return cell
     }

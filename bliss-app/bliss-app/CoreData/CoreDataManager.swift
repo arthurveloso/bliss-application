@@ -63,7 +63,6 @@ class CoreDataManager {
         var count = 0
         do {
             count = try managedContext.count(for: fetchRequest)
-            print(count)
         } catch {
             debugPrint(error.localizedDescription)
         }

@@ -12,7 +12,6 @@ enum HomeSteps {
     case goToEmojisList(emojis: [String], emojisImage: [Emoji])
     case goToAvatarsList
     case goToAppleRepos
-    case dismiss
 }
 
 class HomeCoordinator: Coordinator {
@@ -34,8 +33,6 @@ class HomeCoordinator: Coordinator {
                 self.goToAvatarsList()
             case .goToAppleRepos:
                 self.goToAppleReposList()
-            case .dismiss:
-                self.dismiss()
             }
         }
     }
@@ -66,9 +63,5 @@ class HomeCoordinator: Coordinator {
         let vm = AppleReposViewModel()
         let vc = AppleReposViewController(title: "Apple Repos", viewModel: vm)
         navigationController.pushViewController(vc, animated: true)
-    }
-    
-    func dismiss() {
-        
     }
 }

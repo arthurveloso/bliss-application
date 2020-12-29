@@ -12,7 +12,7 @@ class ItemsCell: UICollectionViewCell {
     
     static let reuseId = "ItemsCell"
 
-    lazy var emojiImage: UIImageView = {
+    lazy var itemImage: UIImageView = {
         let image = UIImageView()
         return image
     }()
@@ -36,8 +36,8 @@ class ItemsCell: UICollectionViewCell {
     }
     
     func setSubviews() {
-        self.contentView.addSubview(emojiImage)
-        emojiImage.snp.makeConstraints { (make) in
+        self.contentView.addSubview(itemImage)
+        itemImage.snp.makeConstraints { (make) in
             make.edges.equalToSuperview().inset(2)
         }
     }

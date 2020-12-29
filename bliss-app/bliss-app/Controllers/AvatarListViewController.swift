@@ -59,7 +59,7 @@ extension AvatarListViewController: UICollectionViewDataSource, UICollectionView
         
         guard let avatars = viewModel?.avatars.value else { return cell }
         
-        cell.emojiImage.image = UIImage(data: avatars[indexPath.item].avatar ?? Data())
+        cell.itemImage.image = UIImage(data: avatars[indexPath.item].avatar ?? Data())
 
         return cell
     }

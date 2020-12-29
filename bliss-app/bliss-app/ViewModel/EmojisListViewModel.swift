@@ -43,7 +43,7 @@ class EmojisListViewModel {
                     debugPrint(error.localizedDescription)
                 }
             case let .failure(error):
-                print(error.localizedDescription)
+                debugPrint(error.localizedDescription)
             }
         }
     }
