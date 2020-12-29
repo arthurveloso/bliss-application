@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class HomeViewController: UIViewController {
     
@@ -28,6 +29,7 @@ class HomeViewController: UIViewController {
         homeView = HomeView(delegate: self)
         self.view = homeView
         bindElements()
+        view.backgroundColor = .blissDark
     }
     
     private func bindElements() {
@@ -40,6 +42,7 @@ class HomeViewController: UIViewController {
             guard let self = self, let data = data else { return }
             self.homeView?.emojiImage.image = UIImage(data: data)
         })
+        viewModel?.getRandomEmoji()
     }
 }
 
@@ -54,6 +57,7 @@ extension HomeViewController: HomeViewDelegate {
     
     func searchPressed() {
         guard let text = homeView?.searchBar.text, !text.isEmpty else { return }
+//        self.showHud("Loading")
         viewModel?.searchUserAvatar(name: text)
     }
     
@@ -63,5 +67,17 @@ extension HomeViewController: HomeViewDelegate {
     
     func appleReposPressed() {
         viewModel?.goToAppleRepos()
+    }
+}
+
+extension UIViewController {
+    func showHud(_ message: String) {
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.label.text = message
+        hud.isUserInteractionEnabled = false
+    }
+
+    func hideHUD() {
+        MBProgressHUD.hide(for: self.view, animated: true)
     }
 }

@@ -17,6 +17,7 @@ class AvatarListViewController: UIViewController {
     init(title: String, viewModel: AvatarListViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        self.title = title
     }
     
     required init?(coder: NSCoder) {
@@ -27,17 +28,16 @@ class AvatarListViewController: UIViewController {
         baCollectionView = BACollectionView()
         self.view = baCollectionView
         bindElements()
+        self.view.backgroundColor = .blissDark
     }
     
     private func bindElements() {
         guard let viewModel = viewModel else { return }
-        baCollectionView?.collectionView.register(EmojisCell.self, forCellWithReuseIdentifier: EmojisCell.reuseId)
+        baCollectionView?.collectionView.register(ItemsCell.self, forCellWithReuseIdentifier: ItemsCell.reuseId)
         baCollectionView?.collectionView.delegate = self
         baCollectionView?.collectionView.dataSource = self
         viewModel.avatars.bind(skip: true) { [weak self] avatars in
-            if !avatars.isEmpty {
-                self?.baCollectionView?.collectionView.reloadData()
-            }
+            self?.baCollectionView?.collectionView.reloadData()
         }
         viewModel.fetchAvatars()
     }
@@ -48,13 +48,19 @@ extension AvatarListViewController: UICollectionViewDataSource, UICollectionView
         return viewModel?.avatars.value.count ?? 0
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let avatar = viewModel?.avatars.value[indexPath.item] else { return }
+        
+        viewModel?.deleteAvatar(avatar: avatar)
+    }
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmojisCell.reuseId, for: indexPath) as? EmojisCell ?? EmojisCell()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemsCell.reuseId, for: indexPath) as? ItemsCell ?? ItemsCell()
         
         guard let avatars = viewModel?.avatars.value else { return cell }
         
         cell.emojiImage.image = UIImage(data: avatars[indexPath.item].avatar ?? Data())
-        
+
         return cell
     }
 }
@@ -68,5 +74,9 @@ extension AvatarListViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
     }
 }

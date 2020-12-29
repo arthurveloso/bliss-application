@@ -106,4 +106,19 @@ class CoreDataManager {
         
         return avatars
     }
+    
+    func deleteAvatar(avatar: Avatar, completion: () -> Void) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        managedContext.delete(avatar)
+        
+        do {
+            try managedContext.save()
+            completion()
+        } catch {
+            debugPrint(error.localizedDescription)
+        }
+    }
 }

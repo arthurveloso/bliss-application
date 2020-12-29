@@ -21,7 +21,7 @@ class BlissButton: UIButton {
     }
     
     private func setupStyle() {
-        self.backgroundColor = .purple
+        self.backgroundColor = .blissRed
         self.layer.cornerRadius = 5
     }
 }

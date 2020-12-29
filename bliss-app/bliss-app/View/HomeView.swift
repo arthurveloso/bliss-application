@@ -56,7 +56,7 @@ class HomeView: UIView {
         let bar = UISearchBar()
         bar.textContentType = .username
         bar.autocapitalizationType = .none
-        bar.barTintColor = .purple
+        bar.barTintColor = .blissRed
         return bar
     }()
     
@@ -102,7 +102,7 @@ class HomeView: UIView {
 
         addSubview(emojiImage)
         emojiImage.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().inset(150)
+            make.top.equalToSuperview().inset(20)
             make.centerX.equalToSuperview()
             make.width.height.equalTo(150)
         }

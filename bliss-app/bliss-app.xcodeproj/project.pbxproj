@@ -19,6 +19,7 @@
 		7697EB4A2595184400C45945 /* BlissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7697EB492595184400C45945 /* BlissButton.swift */; };
 		7697EB4D259533BE00C45945 /* GitHubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7697EB4C259533BE00C45945 /* GitHubService.swift */; };
 		7697EB5025953EAE00C45945 /* UIImageView+Downloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7697EB4F25953EAE00C45945 /* UIImageView+Downloadable.swift */; };
+		76A5C806259AE1DE0019D598 /* UIColor+Bliss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A5C805259AE1DE0019D598 /* UIColor+Bliss.swift */; };
 		76CEE04325980C4F00D60A06 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CEE04225980C4F00D60A06 /* CoreDataManager.swift */; };
 		76CEE06E259823A900D60A06 /* bliss-app.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 76CEE03F2598063C00D60A06 /* bliss-app.xcdatamodeld */; };
 		76CEE071259939BF00D60A06 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CEE070259939BF00D60A06 /* User.swift */; };
@@ -32,7 +33,7 @@
 		76EDEAB42597C64400A3799F /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EDEAB32597C64400A3799F /* Bindable.swift */; };
 		76EDEAB62597F47F00A3799F /* EmojisListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EDEAB52597F47F00A3799F /* EmojisListViewModel.swift */; };
 		76EDEAB82597F4AD00A3799F /* BAListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EDEAB72597F4AD00A3799F /* BAListViewController.swift */; };
-		76EDEABC2597F81400A3799F /* EmojisCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EDEABB2597F81400A3799F /* EmojisCell.swift */; };
+		76EDEABC2597F81400A3799F /* ItemsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EDEABB2597F81400A3799F /* ItemsCell.swift */; };
 		7AC838B70EAA53A0766AEEE3 /* Pods_bliss_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DE0E3548EB049D679E9AC89 /* Pods_bliss_app.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		7697EB492595184400C45945 /* BlissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlissButton.swift; sourceTree = "<group>"; };
 		7697EB4C259533BE00C45945 /* GitHubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubService.swift; sourceTree = "<group>"; };
 		7697EB4F25953EAE00C45945 /* UIImageView+Downloadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Downloadable.swift"; sourceTree = "<group>"; };
+		76A5C805259AE1DE0019D598 /* UIColor+Bliss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Bliss.swift"; sourceTree = "<group>"; };
 		76CEE0402598063C00D60A06 /* bliss-app.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "bliss-app.xcdatamodel"; sourceTree = "<group>"; };
 		76CEE04225980C4F00D60A06 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		76CEE070259939BF00D60A06 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -66,7 +68,7 @@
 		76EDEAB32597C64400A3799F /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		76EDEAB52597F47F00A3799F /* EmojisListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojisListViewModel.swift; sourceTree = "<group>"; };
 		76EDEAB72597F4AD00A3799F /* BAListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAListViewController.swift; sourceTree = "<group>"; };
-		76EDEABB2597F81400A3799F /* EmojisCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojisCell.swift; sourceTree = "<group>"; };
+		76EDEABB2597F81400A3799F /* ItemsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsCell.swift; sourceTree = "<group>"; };
 		9DE0E3548EB049D679E9AC89 /* Pods_bliss_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bliss_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -192,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				7697EB4F25953EAE00C45945 /* UIImageView+Downloadable.swift */,
+				76A5C805259AE1DE0019D598 /* UIColor+Bliss.swift */,
 				76EDEAB32597C64400A3799F /* Bindable.swift */,
 			);
 			path = Utils;
@@ -218,7 +221,7 @@
 		76EDEABD2597F81800A3799F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				76EDEABB2597F81400A3799F /* EmojisCell.swift */,
+				76EDEABB2597F81400A3799F /* ItemsCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				76CEE07525996FA300D60A06 /* BACollectionView.swift in Sources */,
 				7697EB482595147900C45945 /* HomeView.swift in Sources */,
 				7697EB452595140700C45945 /* HomeViewModel.swift in Sources */,
+				76A5C806259AE1DE0019D598 /* UIColor+Bliss.swift in Sources */,
 				76EDEAB82597F4AD00A3799F /* BAListViewController.swift in Sources */,
 				76CEE04325980C4F00D60A06 /* CoreDataManager.swift in Sources */,
 				76832C632593F11000D9B5D0 /* HomeCoordinator.swift in Sources */,
@@ -365,7 +369,7 @@
 				76CEE077259970AA00D60A06 /* AvatarListViewController.swift in Sources */,
 				76CEE0792599715400D60A06 /* AvatarListViewModel.swift in Sources */,
 				76832C5E2593EFB100D9B5D0 /* Coordinator.swift in Sources */,
-				76EDEABC2597F81400A3799F /* EmojisCell.swift in Sources */,
+				76EDEABC2597F81400A3799F /* ItemsCell.swift in Sources */,
 				7697EB4D259533BE00C45945 /* GitHubService.swift in Sources */,
 				76CEE07F2599834900D60A06 /* BATableView.swift in Sources */,
 				76832C662593F26400D9B5D0 /* HomeViewController.swift in Sources */,

@@ -21,6 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         coordinator = MainCoordinator(window: window ?? UIWindow())
         coordinator?.start()
+        
+        UINavigationBar.appearance().barTintColor = .blissRed
+        UINavigationBar.appearance().isTranslucent = false
+        
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
 
         return true
     }

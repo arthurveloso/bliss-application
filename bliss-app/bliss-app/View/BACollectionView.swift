@@ -19,7 +19,6 @@ class BACollectionView: UIView {
     
     init() {
         super.init(frame: .zero)
-        backgroundColor = .white
         setupSubviews()
     }
 
@@ -30,8 +29,7 @@ class BACollectionView: UIView {
     func setupSubviews() {
         addSubview(collectionView)
         collectionView.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().inset(100)
-            make.leading.trailing.equalToSuperview().inset(10)
+            make.leading.top.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
     }

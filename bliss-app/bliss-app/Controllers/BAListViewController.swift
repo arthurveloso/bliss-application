@@ -30,11 +30,12 @@ class BAListViewController: UIViewController {
         baCollectionView = BACollectionView()
         self.view = baCollectionView
         bindElements()
+        self.view.backgroundColor = .blissDark
     }
     
     private func bindElements() {
         guard let viewModel = viewModel else { return }
-        baCollectionView?.collectionView.register(EmojisCell.self, forCellWithReuseIdentifier: EmojisCell.reuseId)
+        baCollectionView?.collectionView.register(ItemsCell.self, forCellWithReuseIdentifier: ItemsCell.reuseId)
         baCollectionView?.collectionView.delegate = self
         baCollectionView?.collectionView.dataSource = self
         
@@ -52,7 +53,7 @@ class BAListViewController: UIViewController {
     private func addRefresher() {
         baCollectionView?.collectionView.refreshControl = refresher
         baCollectionView?.collectionView.alwaysBounceVertical = true
-        refresher.tintColor = .red
+        refresher.tintColor = .blissRed
         refresher.addTarget(self, action: #selector(refreshData), for: .valueChanged)
     }
     
@@ -74,7 +75,7 @@ extension BAListViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmojisCell.reuseId, for: indexPath) as? EmojisCell ?? EmojisCell()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemsCell.reuseId, for: indexPath) as? ItemsCell ?? ItemsCell()
         
         guard let viewModel = viewModel else { return cell }
         
@@ -89,7 +90,7 @@ extension BAListViewController: UICollectionViewDelegate, UICollectionViewDataSo
             cell.emojiImage.image = UIImage(data: imgData)
         }
         
-        cell.backgroundColor = .red
+        cell.backgroundColor = .blissRed
         return cell
     }
     
@@ -112,6 +113,10 @@ extension BAListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = (self.baCollectionView?.frame.width ?? 0.0) / 3.5
         return CGSize(width: size, height: size)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

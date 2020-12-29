@@ -1,5 +1,5 @@
 //
-//  EmojisCell.swift
+//  ItemsCell.swift
 //  bliss-app
 //
 //  Created by Arthur Veloso Gouveia Melo on 26/12/20.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class EmojisCell: UICollectionViewCell {
+class ItemsCell: UICollectionViewCell {
     
-    static let reuseId = "EmojisCell"
+    static let reuseId = "ItemsCell"
 
     lazy var emojiImage: UIImageView = {
         let image = UIImageView()
@@ -30,7 +30,8 @@ class EmojisCell: UICollectionViewCell {
     func setCorners() {
         self.layer.cornerRadius = 10
         self.layer.borderWidth = 2
-        self.layer.borderColor = UIColor.white.cgColor
+        self.layer.borderColor = UIColor.blissMustard.cgColor
+        self.layer.masksToBounds = true
         self.backgroundColor = .clear
     }
     

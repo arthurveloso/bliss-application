@@ -15,4 +15,10 @@ class AvatarListViewModel {
     func fetchAvatars() {
         avatars.value = CoreDataManager.shared.fetchAvatar()
     }
+    
+    func deleteAvatar(avatar: Avatar) {
+        CoreDataManager.shared.deleteAvatar(avatar: avatar) {
+            fetchAvatars()
+        }
+    }
 }

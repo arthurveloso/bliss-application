@@ -23,6 +23,7 @@ class HomeCoordinator: Coordinator {
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        self.navigationController.navigationBar.tintColor = .black
         
         steps.bind(skip: true) { [weak self] step in
             guard let self = self, let step = step else { return }
