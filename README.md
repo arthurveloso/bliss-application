@@ -5,6 +5,7 @@ Example iOS app developed for Bliss Applications.
 * Swift 5
 * Xcode 11.3.1
 * macOS Mojave (10.14.6)
+* iPhone X simulator
 
 ### Libraries/abstractions used:
 * SnapKit for view code and auto-layout
@@ -18,3 +19,10 @@ Example iOS app developed for Bliss Applications.
 * I would like to have used Realm as my CoreData alternative, but I'm currently working on a machine that couldn't have been updated (OS and development tools), so Realm turned out to be not an option. 
 * I have decided to use a class called Bindable that implements one of the things that I like most when using RxSwift: Observables, but without the need to import such a huge and powerful SDK, keeping my tiny project clean and more feasible to deliver on time.
 * Missing pagination on Apple repos screen. I was thinking of building something using the **UITableViewDataSourcePrefetching** protocol, but couldn't achieve a satisfactory result on time.
+
+Screenshots:
+
+![alt text](https://github.com/arthurveloso/bliss-application/blob/develop/screenshots/home.png)
+![alt text](https://github.com/arthurveloso/bliss-application/blob/develop/screenshots/emojis.png)
+![alt text](https://github.com/arthurveloso/bliss-application/blob/develop/screenshots/avatars.png)
+![alt text](https://github.com/arthurveloso/bliss-application/blob/develop/screenshots/repos.png)
