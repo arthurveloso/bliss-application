@@ -8,6 +8,5 @@ target 'bliss-app' do
   # Pods for bliss-app
   pod 'SnapKit'
   pod 'Moya'
-  pod 'MBProgressHUD', '~> 1.2.0'
 
 end
